@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Encrypted Discord Invite Link</title>
+    <style>
+        body {
+            background-color: white;
+            color: black;
+            text-align: center;
+        }
+
+        /* Style for the Discord invite link */
+        #discord-invite-link {
+            display: block;
+            margin-top: 200px; /* Optional: Adjust the top margin to position the link */
+            font-size: 24px;
+            text-decoration: none;
+            animation: moveButton 2s linear infinite; /* Apply the animation to the button */
+        }
+
+        /* Style for the hyperlink on hover (optional) */
+        #discord-invite-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Keyframes for the moving button animation */
+        @keyframes moveButton {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px); /* Move up by 10 pixels */
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+    </style>
+    <script>
+        // Function to decrypt the encrypted link (Base64 decoding)
+        function decryptLink(encryptedLink) {
+            var decryptedLink = "";
+            try {
+                decryptedLink = atob(encryptedLink);
+            } catch (error) {
+                console.error("Error decrypting the link: " + error.message);
+            }
+            return decryptedLink;
+        }
+
+        // Run this when the page is loaded
+        window.onload = function() {
+            var encryptedLink = "aHR0cHM6Ly9kaXNjb3JkLmdnLzdyQUJuc0U3VHp"; // Replace with your encrypted link (Base64-encoded)
+            var decryptedLink = decryptLink(encryptedLink);
+            var discordInviteLink = document.getElementById("discord-invite-link");
+            discordInviteLink.href = decryptedLink;
+            discordInviteLink.innerHTML = "Join our Discord server!";
+        };
+    </script>
+</head>
+<body>
+    <!-- Discord invite link (placeholder, will be updated by JavaScript) -->
+    <a href="#" target="_blank" id="discord-invite-link">Loading...</a>
+</body>
+</html>
